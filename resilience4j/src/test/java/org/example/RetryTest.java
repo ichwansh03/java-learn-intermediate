@@ -26,6 +26,9 @@ public class RetryTest {
     @Test
     void testRetry() {
         Retry retry = Retry.ofDefaults("ichwan");
+        retry.getEventPublisher().onRetry(event -> {
+            log.info("try to retry");
+        });
 
         //jika method callMe() mengembalikan nilai, gunakan decorateSupplier()
         Runnable runnable = Retry.decorateRunnable(retry, () -> callMe());
@@ -51,8 +54,10 @@ public class RetryTest {
     void testRetryRegistry(){
         RetryRegistry retryRegistry = RetryRegistry.ofDefaults();
 
+        retryRegistry.getEventPublisher().onEntryAdded(event -> log.info("add new entry {} ", event.getAddedEntry().getName()));
+
         Retry retry = retryRegistry.retry("ichwan");
-        Retry retry2 = retryRegistry.retry("ichwan");
+        Retry retry2 = retryRegistry.retry("ichwan2");
 
         Assertions.assertSame(retry, retry2);
     }
