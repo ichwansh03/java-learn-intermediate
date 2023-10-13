@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
+import java.util.function.Supplier;
 
 @Slf4j
 public class DecoratorTest {
@@ -21,6 +22,40 @@ public class DecoratorTest {
         log.info("Slow");
         Thread.sleep(1_000L);
         throw new IllegalArgumentException("Error");
+    }
+
+    @SneakyThrows
+    public String sayhello(){
+        log.info("say hello");
+        Thread.sleep(1000L);
+        throw new IllegalArgumentException("SayHello");
+    }
+
+    @Test
+    void testDecoratorsWithFallback() {
+        RateLimiter rateLimiter = RateLimiter.of("ichwan-ratelimiter", RateLimiterConfig.custom()
+                .limitForPeriod(5)
+                .limitRefreshPeriod(Duration.ofMinutes(1))
+                .build());
+
+        Retry retry = Retry.of("ichwan-retry", RetryConfig.custom()
+                .maxAttempts(10)
+                .waitDuration(Duration.ofMillis(100))
+                .build());
+
+        Bulkhead bulkhead = Bulkhead.of("ichwan-bulkhead", BulkheadConfig.custom()
+                .maxWaitDuration(Duration.ofSeconds(5))
+                .maxConcurrentCalls(10)
+                .build());
+
+        Supplier<String> decorate = Decorators.ofSupplier(() -> sayhello())
+                .withRetry(retry)
+                .withRateLimiter(rateLimiter)
+                .withBulkhead(bulkhead)
+                .withFallback(throwable -> "hello world")
+                .decorate();
+
+        System.out.println(decorate.get());
     }
 
     @Test
