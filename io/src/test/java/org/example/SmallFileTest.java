@@ -20,4 +20,16 @@ class SmallFileTest {
         Files.writeString(path2, "Hello File 2");
         Assertions.assertTrue(Files.exists(path2));
     }
+
+    @Test
+    void readSmallFile() throws IOException {
+        Path path = Path.of("file1.txt");
+        byte[] bytes = Files.readAllBytes(path);
+        String content = new String(bytes);
+        Assertions.assertEquals("Hello World", content);
+
+        Path path2 = Path.of("file2.txt");
+        String content2 = Files.readString(path2);
+        Assertions.assertEquals("Hello File 2", content2);
+    }
 }
