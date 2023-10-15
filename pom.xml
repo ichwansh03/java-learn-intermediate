@@ -12,10 +12,10 @@
   <modules>
     <module>resilience4j</module>
     <module>io</module>
+    <module>json</module>
   </modules>
 
   <name>JavaReflectionIntermediate</name>
-  <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
   <properties>
@@ -26,6 +26,7 @@
     <lombok.version>1.18.30</lombok.version>
     <resilience4jVersion>2.0.0</resilience4jVersion>
     <slf4jVersion>2.0.9</slf4jVersion>
+    <jackson.version>2.15.3</jackson.version>
   </properties>
 
   <dependencyManagement>
@@ -55,6 +56,11 @@
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-simple</artifactId>
         <version>${slf4jVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>${jackson.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
