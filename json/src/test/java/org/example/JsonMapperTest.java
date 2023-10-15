@@ -2,6 +2,7 @@ package org.example;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -91,6 +92,21 @@ class JsonMapperTest {
 
         Person person = objectMapper.readValue(json, Person.class);
 
+        Assertions.assertNotNull(person);
+    }
+
+    @Test
+    void mapperFeatureTest() throws JsonProcessingException {
+
+        objectMapper = new ObjectMapper()
+                .configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
+
+        String json = """
+                {"ID":"123A","Name":"Ichwan Sholihin","hobbies":["Coding","Reading","Travelling"],"address":{"street":"Rajawali","city":"Bandar Lampung","zipcode":"35362"}}
+                """;
+
+        Person person = objectMapper.readValue(json, Person.class);
+        Assertions.assertEquals("123A", person.getId());
         Assertions.assertNotNull(person);
     }
 }
