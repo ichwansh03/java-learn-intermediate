@@ -6,3 +6,6 @@
 * Circuit Braker digunakan untuk aplikasi dengan traffic tinggi atau integrasi dengan app lain.
 * `Decorators` digunakan untuk menggabungkan module yang berbeda, kecuali Time Limiter.
 * `getEventPublisher()` dapat digunakan pada semua module untuk menambahkan keterangan pada setiap event yg terjadi.
+
+## Related Aricle
+![Kenal Lebih Dekat dengan Library Resilience4j di Java](https://ichwansholihin.medium.com/kenal-lebih-dekat-dengan-library-resilience4j-di-java-261cb2ebc673)
