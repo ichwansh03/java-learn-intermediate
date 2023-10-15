@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.PrintStream;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -33,6 +34,21 @@ public class OutputStreamTest {
                 writer.write("Write data\n");
                 writer.flush();
             }
+        } catch (IOException e){
+            Assertions.fail(e);
+        }
+    }
+
+    @Test
+    void printStream(){
+        Path path = Path.of("print.txt");
+
+        try(OutputStream outputStream = Files.newOutputStream(path);
+            PrintStream stream = new PrintStream(outputStream)) {
+
+            stream.println("print 1");
+            stream.println("print 2");
+
         } catch (IOException e){
             Assertions.fail(e);
         }
