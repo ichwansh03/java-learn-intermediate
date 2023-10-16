@@ -13,6 +13,7 @@
     <module>resilience4j</module>
     <module>io</module>
     <module>json</module>
+    <module>csv</module>
   </modules>
 
   <name>JavaReflectionIntermediate</name>
@@ -27,6 +28,7 @@
     <resilience4jVersion>2.0.0</resilience4jVersion>
     <slf4jVersion>2.0.9</slf4jVersion>
     <jackson.version>2.15.3</jackson.version>
+    <csv.version>1.10.0</csv.version>
   </properties>
 
   <dependencyManagement>
@@ -61,6 +63,11 @@
         <groupId>com.fasterxml.jackson.core</groupId>
         <artifactId>jackson-databind</artifactId>
         <version>${jackson.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-csv</artifactId>
+        <version>${csv.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
