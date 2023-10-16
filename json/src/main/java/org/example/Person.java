@@ -1,5 +1,7 @@
 package org.example;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 import java.util.List;
 
@@ -15,6 +17,7 @@ public class Person {
 
     private Date createdAt;
 
+    @JsonIgnore
     private Date updatedAt;
 
     public Date getCreatedAt() {
