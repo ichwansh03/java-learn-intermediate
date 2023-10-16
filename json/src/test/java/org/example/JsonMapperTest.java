@@ -1,9 +1,11 @@
 package org.example;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -79,7 +81,10 @@ class JsonMapperTest {
         address.setZipcode("35362");
         person.setAddress(address);
 
-        String value = objectMapper.writeValueAsString(person);
+        String value = objectMapper
+                .configure(SerializationFeature.INDENT_OUTPUT, true)
+                .setSerializationInclusion(JsonInclude.Include.NON_NULL)
+                .writeValueAsString(person);
         Assertions.assertNotNull(person);
         System.out.println(value);
     }
