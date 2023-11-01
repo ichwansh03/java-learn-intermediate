@@ -14,6 +14,7 @@
     <module>io</module>
     <module>json</module>
     <module>csv</module>
+    <module>sequence_collection</module>
   </modules>
 
   <name>JavaReflectionIntermediate</name>
