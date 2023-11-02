@@ -4,5 +4,6 @@
 * ![Input Output](https://github.com/ichwansh03/java-reflection-learning-intermediate/tree/main/io)
 * ![JSON](https://github.com/ichwansh03/java-reflection-learning-intermediate/tree/main/json)
 * ![CSV](https://github.com/ichwansh03/java-reflection-learning-intermediate/tree/main/csv)
-* ![Spring JPA](https://github.com/ichwansh03/spring-jpa)
+* ![Web Servlet Spesification](https://github.com/ichwansh03/web-servlet)
+* ![Spring JPA/ORM](https://github.com/ichwansh03/spring-jpa)
   
