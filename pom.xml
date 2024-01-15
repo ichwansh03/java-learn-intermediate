@@ -15,6 +15,7 @@
     <module>json</module>
     <module>csv</module>
     <module>sequence_collection</module>
+      <module>sealedrecord</module>
   </modules>
 
   <name>JavaReflectionIntermediate</name>
